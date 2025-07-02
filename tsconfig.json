@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-  "target": "esnext",
-  "module": "commonjs",
-  "rootDir": "./src",
-  "outDir": "./dist",
-  "strict": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true
+    "target": "es2020",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
+
   },
   "include": [
-    "src/**/*",
+    "src/**/*"
   ],
 }
