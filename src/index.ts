@@ -1,14 +1,13 @@
-import  express  from "express";
-import "dotenv/config";
-import "reflect-metadata";
+import express from "express";
+require("dotenv").config()
+import 'dotenv/config';
+import produtosRoute from "./routes/produto.routes"
 
-const app = express();
-app.use(express.json());
+const app = express()
+app.use(express.json())
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
-});
+app.use("/produtos", produtosRoute)
 
 app.listen(process.env.API_PORT, () => {
-  console.log("Server is running on http://localhost:3000");
-});
+    console.log("servidor rodando na porta",process.env.API_PORT)
+})

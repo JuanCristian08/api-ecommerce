@@ -12,6 +12,6 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Produto],
-  migrations: ["src/migrations/**/*.ts"],
+  migrations: ["dist/database/migrations/*.js"],
   synchronize: false,
 });
