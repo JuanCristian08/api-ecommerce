@@ -1,20 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("produto")
-export class Produto {
-  @PrimaryGeneratedColumn()
-  id?: number;
+@Entity("produtos")
+export class Produto{
+    @PrimaryGeneratedColumn()
+    id!: Number;
 
-  @Column()
-  nome?: String;
-
-  @Column("decimal", { precision: 10, scale: 2 })
-    preco?: number;
-  
     @Column()
-    descricao?: String;
+    nome!: String;
 
-    @Column({ default: true })
-    ativo?: boolean;
+    @Column()
+    preco!: Number;
 
+    @Column()
+    descricao!: String;
+
+    @Column()
+    ncm!: String;
+
+    @Column()
+    quantidade!: Number;
 }
