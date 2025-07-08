@@ -1,6 +1,8 @@
 import dotenv from 'dotenv';
 import { DataSource } from 'typeorm';
 import { Produto } from '../entities/Produto';
+import "dotenv/config";
+
 
 dotenv.config();
 
@@ -12,6 +14,6 @@ export const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
   entities: [Produto],
-  migrations: ["dist/database/migrations/*.js"],
+  migrations: ["src/database/migrations/*.ts"],
   synchronize: false,
 });

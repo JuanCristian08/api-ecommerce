@@ -23,7 +23,7 @@ __decorate([
     __metadata("design:type", String)
 ], Produto.prototype, "nome", void 0);
 __decorate([
-    (0, typeorm_1.Column)("decimal", { precision: 10, scale: 2 }),
+    (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Produto.prototype, "preco", void 0);
 __decorate([
@@ -31,9 +31,13 @@ __decorate([
     __metadata("design:type", String)
 ], Produto.prototype, "descricao", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ default: true }),
-    __metadata("design:type", Boolean)
-], Produto.prototype, "ativo", void 0);
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Produto.prototype, "ncm", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Produto.prototype, "quantidade", void 0);
 exports.Produto = Produto = __decorate([
-    (0, typeorm_1.Entity)("produto")
+    (0, typeorm_1.Entity)("produtos")
 ], Produto);
