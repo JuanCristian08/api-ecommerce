@@ -1,22 +1,23 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity("produtos")
-export class Produto{
+export class Produto {
     @PrimaryGeneratedColumn()
-    id!: Number;
+    id!: number;
 
     @Column()
     nome!: String;
 
-    @Column()
-    preco!: Number;
+    @Column("decimal", {precision: 10, scale: 2})
+    preco!: number;
 
     @Column()
     descricao!: String;
 
     @Column()
-    ncm!: String;
+    quantidade!: number;
 
     @Column()
-    quantidade!: Number;
+    ncm!: String;
+
 }

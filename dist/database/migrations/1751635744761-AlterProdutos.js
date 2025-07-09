@@ -1,28 +1,39 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AlterProdutos1751635744761 = void 0;
+exports.CreateUsuarios1751990967795 = void 0;
 const typeorm_1 = require("typeorm");
-class AlterProdutos1751635744761 {
+class CreateUsuarios1751990967795 {
     async up(queryRunner) {
-        await queryRunner.addColumns('produto', [
-            new typeorm_1.TableColumn({
-                name: 'quantidade',
-                type: 'int',
-                isNullable: false,
-                default: 0
-            }),
-            new typeorm_1.TableColumn({
-                name: "ncm",
-                type: "char",
-                length: "8",
-                isNullable: false
-            })
-        ]);
+        await queryRunner.createTable(new typeorm_1.Table({
+            name: "usuarios",
+            columns: [
+                {
+                    name: "id",
+                    type: "int",
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: "increment"
+                },
+                {
+                    name: "nome",
+                    type: "varchar",
+                    length: "100"
+                },
+                {
+                    name: "email",
+                    type: "varchar",
+                    length: "255"
+                },
+                {
+                    name: "password",
+                    type: "varchar",
+                    length: "1000"
+                },
+            ]
+        }));
     }
     async down(queryRunner) {
-        await queryRunner.dropColumns('produto', [
-            "quantidade", "ncm"
-        ]);
+        await queryRunner.dropTable("usuarios");
     }
 }
-exports.AlterProdutos1751635744761 = AlterProdutos1751635744761;
+exports.CreateUsuarios1751990967795 = CreateUsuarios1751990967795;

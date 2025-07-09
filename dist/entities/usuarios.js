@@ -9,41 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Produto = void 0;
+exports.Usuarios = void 0;
 const typeorm_1 = require("typeorm");
-let Produto = class Produto {
+let Usuarios = class Usuarios {
     id;
     nome;
-    preco;
-    descricao;
-    quantidade;
-    ncm;
+    email;
+    password;
 };
-exports.Produto = Produto;
+exports.Usuarios = Usuarios;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Produto.prototype, "id", void 0);
+], Usuarios.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Produto.prototype, "nome", void 0);
-__decorate([
-    (0, typeorm_1.Column)("decimal", { precision: 10, scale: 2 }),
-    __metadata("design:type", Number)
-], Produto.prototype, "preco", void 0);
+], Usuarios.prototype, "nome", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Produto.prototype, "descricao", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Produto.prototype, "quantidade", void 0);
+], Usuarios.prototype, "email", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Produto.prototype, "ncm", void 0);
-exports.Produto = Produto = __decorate([
-    (0, typeorm_1.Entity)("produtos")
-], Produto);
+], Usuarios.prototype, "password", void 0);
+exports.Usuarios = Usuarios = __decorate([
+    (0, typeorm_1.Entity)("usuarios")
+], Usuarios);

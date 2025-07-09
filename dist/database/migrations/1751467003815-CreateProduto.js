@@ -1,45 +1,51 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateProduto1751467003815 = void 0;
+exports.CreateProduto1751466876723 = void 0;
 const typeorm_1 = require("typeorm");
-class CreateProduto1751467003815 {
+class CreateProduto1751466876723 {
     async up(queryRunner) {
         await queryRunner.createTable(new typeorm_1.Table({
-            name: 'produto',
+            name: "produtos",
             columns: [
                 {
-                    name: 'id',
-                    type: 'int',
-                    isPrimary: true,
-                    isGenerated: true,
-                    generationStrategy: 'increment'
+                    name: "id", // nome da coluna
+                    type: "int", // tipo de dado
+                    isPrimary: true, // chave primária
+                    isGenerated: true, // auto increment
+                    generationStrategy: "increment" // estratégia do auto increment, depende do banco
                 },
                 {
-                    name: 'nome',
-                    type: 'varchar',
-                    length: '255'
+                    name: "nome",
+                    type: "varchar",
+                    length: "100", // comprimento do varchar
                 },
                 {
-                    name: 'preco',
-                    type: 'decimal',
+                    name: "preco",
+                    type: "decimal",
                     precision: 10,
                     scale: 2
                 },
                 {
-                    name: 'descricao',
-                    type: 'text',
-                    isNullable: true
+                    name: "descricao",
+                    type: "text",
                 },
                 {
-                    name: 'ativo',
-                    type: 'boolean',
-                    default: true
+                    name: "quantidade",
+                    type: "int",
+                    default: 0,
+                    isNullable: false
+                },
+                {
+                    name: "ncm",
+                    type: "char",
+                    length: "8",
+                    isNullable: false
                 }
             ]
         }));
     }
     async down(queryRunner) {
-        await queryRunner.dropTable('produto');
+        await queryRunner.dropTable("produtos");
     }
 }
-exports.CreateProduto1751467003815 = CreateProduto1751467003815;
+exports.CreateProduto1751466876723 = CreateProduto1751466876723;

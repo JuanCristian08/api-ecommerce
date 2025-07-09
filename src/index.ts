@@ -1,18 +1,26 @@
 import express from "express";
-import "dotenv/config";
-import produtosRoute from "./routes/produto.routes";
+import "reflect-metadata";
+import produtosRoutes from "./routes/produto.routes";
+import usuariosRoutes from "./routes/usuarios.routes";
 import { AppDataSource } from "./database/data-source";
+require("dotenv").config();
 
 
 AppDataSource.initialize()
-  .then(() => {
-    const app = express();
-    app.use(express.json());
-    app.use("/produtos", produtosRoute);
-    app.listen(process.env.API_PORT, () => {
-      console.log("Servidor rodando na porta", process.env.API_PORT);
-    });
-  })
-  .catch((error) => {
-    console.log("Banco de dados não conectado", error);
-  });
+        .then(() => {
+
+            const app = express();
+            app.use(express.json()); // define transmissão de dados em JSON
+            app.use("/produtos", produtosRoutes); // acessa 'produtosRoutes' quando url for => /produtos
+            app.use("/usuarios", usuariosRoutes);
+
+            app.listen(process.env.API_PORT, () => {
+                console.log("Servidor Rodando na porta", process.env.API_PORT);
+            })
+
+            console.log("Banco de dados conectado com sucesso");
+            
+        })
+        .catch((error) => {
+            console.error("Banco de dados não está conectado");
+        });

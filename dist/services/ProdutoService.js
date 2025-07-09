@@ -13,7 +13,7 @@ exports.ProdutoService = {
     async listar() {
         return await repo.find();
     },
-    async buscarPorId(id) {
+    async buscar_id(id) {
         return await repo.findOneBy({ id });
     },
     async atualizar(id, data) {
