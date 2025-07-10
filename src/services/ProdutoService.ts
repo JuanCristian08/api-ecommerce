@@ -12,8 +12,8 @@ export const ProdutoService = {
 
     async listar(): Promise<Produto[]> {
         return await repo.find();
-    },
 
+    },
     async buscar_id(id: number): Promise<Produto | null> {
         return await repo.findOneBy({ id });
     },

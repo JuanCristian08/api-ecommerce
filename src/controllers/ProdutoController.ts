@@ -23,7 +23,7 @@ export const ProdutoController = {
 
     async buscar(req: Request, res: Response): Promise<void>{
       const id = Number(req.params.id)
-      const produto = await ProdutoService.buscarPorId(id)
+      const produto = await ProdutoService.buscar_id(id)
       if(!produto) res.status(404).json({erro: "Produto não encontrado"})
         res.status(200).json(produto)
 
@@ -44,5 +44,4 @@ export const ProdutoController = {
 
         res.status(200).json({status: "produto removido com sucesso", produto: removido})
     }
-
 }

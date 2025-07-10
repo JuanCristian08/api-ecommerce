@@ -13,12 +13,12 @@ AppDataSource.initialize()
             app.use(express.json()); // define transmissão de dados em JSON
             app.use("/produtos", produtosRoutes); // acessa 'produtosRoutes' quando url for => /produtos
             app.use("/usuarios", usuariosRoutes);
-
+            app.use("/usuarios", usuariosRoutes);   
             app.listen(process.env.API_PORT, () => {
                 console.log("Servidor Rodando na porta", process.env.API_PORT);
             })
 
-            console.log("Banco de dados conectado com sucesso");
+            console.log("Banco de dados conectado com sucesso");    
             
         })
         .catch((error) => {
