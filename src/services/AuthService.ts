@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const repo = AppDataSource.getRepository(Usuarios);
 
 export const AuthService = {
-    async aut(email: string, senha: string) {
+    async auth(email: string, senha: string) {
         const user = await repo.findOneBy({ email })
 
         if(user) {
