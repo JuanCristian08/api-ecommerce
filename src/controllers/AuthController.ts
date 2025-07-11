@@ -5,7 +5,9 @@ export const AuthController = {
         const { email, password } = req.body
 
         try {
-            const auth = AuthService.auth(email, password)
+            const auth =  await AuthService.auth(email, password)
+            if(!auth)
+                res.status(401).json({erro: "Dados de login incorretos"})
             res.json(auth)
         } catch (error: any) {
             res.status(401).json({erro: error.message})
