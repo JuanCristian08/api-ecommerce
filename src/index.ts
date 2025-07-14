@@ -31,8 +31,8 @@ AppDataSource.initialize()
         app.use("/produtos", produtosRoutes); // acessa 'produtosRoutes' quando url for => /produtos
         app.use("/usuarios", usuariosRoutes);
         app.use("/login", routeLogin)
-        app.listen(process.env.API_PORT, () => {
-            console.log("Servidor Rodando na porta", process.env.API_PORT);
+        app.listen(process.env.PORT, () => {
+            console.log("Servidor Rodando na porta", process.env.PORT);
         })
 
         console.log("Banco de dados conectado com sucesso");
