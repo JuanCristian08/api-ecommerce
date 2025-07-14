@@ -7,6 +7,7 @@ export const ProdutoService = {
     async criar(data: Partial<Produto>): Promise<Produto> {
         const produto = repo.create(data);
         await repo.save(produto);
+        AppDataSource.destroy()
         return produto;
     },
 
