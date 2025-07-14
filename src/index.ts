@@ -1,7 +1,7 @@
 import express from "express";
 import "reflect-metadata";
 import produtosRoutes from "./routes/produto.routes";
-import usuariosRoutes from "./routes/usuarios.routes";
+import usuariosRoutes from "./routes/usuario.routes";
 import routeLogin from './routes/auth.routes'
 import { AppDataSource } from "./database/data-source";
 require("dotenv").config();

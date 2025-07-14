@@ -1,78 +1,61 @@
 import { AppDataSource } from "../database/data-source";
 import { Usuarios } from "../entities/Usuario";
-const bcrypt = require('bcrypt');
-import { Repository } from 'typeorm';
+const bcrypt = require('bcrypt')
+const saltRounds = 10
 
-const saltRounds = 10;
-const repo: Repository<Usuarios> = AppDataSource.getRepository(Usuarios);
+const repo = AppDataSource.getRepository(Usuarios)
 
-// Tipo para o retorno seguro do usuário (sem password)
-type SafeUsuario = Pick<Usuarios, 'id' | 'nome' | 'email'>;
+type UsuarioRetorno = {
+    id: number,
+    nome: String,
+    email: String
+}
 
-export const UsuarioService = {
-    async listar(): Promise<Usuarios[]> {
+export const UsuarioService    = {
+
+    async getAll() : Promise<Usuarios[]>{
         return await repo.find({
-            select: ['id', 'nome', 'email'] // Seleciona apenas os campos seguros
-        });
+            select: ["id", "nome", "email"]
+    })
     },
 
-    async buscar(id: number): Promise<SafeUsuario | null> {
-        const usuario = await repo.findOne({ 
-            where: { id },
-            select: ['id', 'nome', 'email']
-        });
-        return usuario;
+    async getOne(id: number) : Promise<Usuarios | null>{
+        return await repo.findOneBy({ id })
     },
 
-    async adicionar(data: Partial<Usuarios>): Promise<SafeUsuario> {
-        if (!data.password) {
-            throw new Error('Senha é obrigatória');
-        }
-
-        const hashedPassword = await bcrypt.hash(data.password, saltRounds);
-        const usuarioData = {
-            ...data,
-            password: hashedPassword
-        };
-
-        const usuario = repo.create(usuarioData);
-        await repo.save(usuario);
-
-        // Retorna apenas os dados seguros
+    async create(data: Partial<Usuarios>) : Promise<UsuarioRetorno>{
+        data.password = await bcrypt.hash(data.password, saltRounds)
+        const user = repo.create(data)
+        await repo.save(user)
         return {
-            id: usuario.id,
-            nome: usuario.nome,
-            email: usuario.email
+            id: user.id,
+            nome: user.nome,
+            email: user.email,
         };
     },
 
-    async editar(id: number, data: Partial<Usuarios>): Promise<SafeUsuario | null> {
-        const usuario = await repo.findOneBy({ id });
-        if (!usuario) return null;
+    async update(id : number, data: Partial<Usuarios>): Promise<UsuarioRetorno | null>{
+        const user = await repo.findOneBy({ id })
+        if(!user)
+            return null
 
-        if (data.password) {
-            data.password = await bcrypt.hash(data.password, saltRounds);
-        }
-
-        repo.merge(usuario, data);
-        await repo.save(usuario);
-
-        return {
-            id: usuario.id,
-            nome: usuario.nome,
-            email: usuario.email
+        repo.merge(user, data)
+        await repo.save(user)
+          return {
+            id: user.id,
+            nome: user.nome,
+            email: user.email,
         };
     },
 
-    async deletar(id: number): Promise<SafeUsuario | null> {
-        const usuario = await repo.findOne({ 
-            where: { id },
-            select: ['id', 'nome', 'email']
-        });
-        
-        if (!usuario) return null;
+    async delete(id: number) : Promise<Usuarios | null>{
+        const user = await repo.findOneBy({ id })
+        if(!user)
+            return null
 
-        await repo.remove(usuario);
-        return usuario;
+        await repo.remove(user)
+        return user
     }
-};
+}
+
+///
