@@ -1,12 +1,13 @@
 import { Router } from "express";
 import { ProdutoController } from "../controllers/ProdutoController";
+import { authJwt } from "../middlewares/auth.jwt";
 
 const routes = Router()
 
-routes.get("/", ProdutoController.listar)
-routes.get("/:id", ProdutoController.buscar)
-routes.post("/", ProdutoController.criar)
-routes.put("/:id", ProdutoController.atualizar)
-routes.delete("/:id", ProdutoController.deletar)
+routes.get("/", authJwt, ProdutoController.listar)
+routes.get("/:id", authJwt,ProdutoController.buscar)
+routes.post("/", authJwt,ProdutoController.criar)
+routes.put("/:id", authJwt,ProdutoController.atualizar)
+routes.delete("/:id", authJwt,ProdutoController.deletar)
 
 export default routes
